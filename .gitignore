@@ -1,0 +1,54 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ===== 模型权重 (太大, 不放GitHub) =====
+data/Models/
+models/
+
+# ===== 特征文件 =====
+data/Feats/
+
+# ===== 处理过的中间数据 =====
+data/processed/
+
+# ===== 排除列表 (31MB, 太大) =====
+data/raw/Exclusion_List.csv
+
+# ===== 归档文件 (历代迭代代码, 不放GitHub) =====
+archive/
+
+# ===== 临时脚本 =====
+_*.py
+_*.txt
+
+# ===== 系统文件 =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.swp
+
+# ===== 旧版本文档 =====
+GFP_Hexagon_Warrior_技术文档_v2.docx
+GFP_Hexagon_Warrior_技术文档_v3.docx
+GFP_Hexagon_Warrior_详细技术文档.docx
+
+# ===== Word临时文件 =====
+~$*.docx
+
+# ===== 生成序列子目录 (中间结果, 太大) =====
+generated_seqs/checkpoints/
+generated_seqs/iterations/
+generated_seqs/intermediate/
+generated_seqs/archive/
+
+# ===== project_flowchart =====
+project_flowchart.png

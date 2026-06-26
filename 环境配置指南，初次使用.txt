@@ -1,0 +1,28 @@
+# 1. 创建一个名为 gfp 的独立环境，指定 Python 版本为 3.10
+conda create -n gfp python=3.10 -y
+
+# 2. 激活该环境 (以后每次打开终端，都要先运行这句)
+conda activate gfp
+
+# 3. 安装 PyTorch (根据您的电脑是否有 NVIDIA 显卡选择)
+# 【如果您的电脑有 NVIDIA 显卡 (如您的 4080)】，运行这句：
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# 【如果队友的电脑没有 NVIDIA 显卡 (如 Mac 或轻薄本)】，运行这句：
+# pip install torch torchvision torchaudio
+
+# 4. 安装其他所有必需的第三方库
+pip install pandas scikit-learn xgboost transformers biopython joblib tqdm openpyxl matplotlib seaborn
+
+解决报错：ModuleNotFoundError: No module named 'pandas'
+这个报错的原因很简单：您的 gfp_Hexagon_Warrior 环境虽然创建好了，但是还没有安装代码运行所需的第三方库（比如 pandas）。
+
+请在当前的黑窗口中，复制并运行以下命令，一次性安装所有必需的库：
+
+pip install pandas numpy scikit-learn xgboost transformers biopython joblib tqdm openpyxl
+我们需要安装支持 CUDA（GPU 加速）的 PyTorch 版本，这样后面跑 ESM-2 特征提取时才能调用显卡，否则用 CPU 跑会慢到让人崩溃。
+
+请在当前的黑窗口中，复制并运行以下命令来安装 PyTorch：
+
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+(💡 注意：这个包比较大（大约 2.5GB 左右），下载可能需要几分钟，请耐心等待它显示 Successfully installed torch...。)
