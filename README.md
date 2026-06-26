@@ -8,6 +8,8 @@ GFP Hexagon Warrior — SynBio Challenges 2026 · WHU-CHINA
 
 本项目利用蛋白质语言大模型 **ESM-2 (650M)** 的LoRA微调技术,构建**三模型加权协同**预测系统,结合 **ESM3-ddG (1.4B)** 热稳定性验证与 **AlphaFold 3** 结构审核,从处理后的12万条实验数据中挖掘高亮度突变模式,设计6条新型绿色荧光蛋白(GFP)变体。详细技术说明文档见docs/GFP_Hexagon_Warrior_WHU_CHINA_技术文档_v8.docx
 
+> [LLM Agent 逻辑树与关键执行日志](docs/LLM_Agent_逻辑树与执行日志.md) — 记录AI Agent辅助开发的决策逻辑树与关键执行输出,确保全流程可复现。
+
 <p align="center">
   <img src="assets/项目导图.png" alt="项目思维导图" width="600">
   <p align="center">项目思维导图</p>
