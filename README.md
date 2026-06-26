@@ -6,10 +6,10 @@ GFP Hexagon Warrior — SynBio Challenges 2026 · WHU-CHINA
 
 ## 一、项目概述
 
-本项目利用蛋白质语言大模型 **ESM-2 (650M)** 的LoRA微调技术,构建**三模型加权协同**预测系统,结合 **ESM3-ddG (1.4B)** 热稳定性验证与 **AlphaFold 3** 结构审核,从12万条实验数据中挖掘高亮度突变模式,设计6条新型绿色荧光蛋白(GFP)变体。详细技术说明文档见GFP_Hexagon_Warrior_WHU_CHINA_技术文档_v8.docx
+本项目利用蛋白质语言大模型 **ESM-2 (650M)** 的LoRA微调技术,构建**三模型加权协同**预测系统,结合 **ESM3-ddG (1.4B)** 热稳定性验证与 **AlphaFold 3** 结构审核,从12万条实验数据中挖掘高亮度突变模式,设计6条新型绿色荧光蛋白(GFP)变体。详细技术说明文档见docs/GFP_Hexagon_Warrior_WHU_CHINA_技术文档_v8.docx
 
 <p align="center">
-  <img src="项目导图.png" alt="项目思维导图" width="600">
+  <img src="assets/项目导图.png" alt="项目思维导图" width="600">
   <p align="center">项目思维导图</p>
 </p>
 
@@ -46,14 +46,14 @@ GFP Hexagon Warrior — SynBio Challenges 2026 · WHU-CHINA
 ### V9 LoRA 主力模型 (R²=0.946)
 
 <p align="center">
-  <img src="v9_scatter_uniform.png" alt="V9散点图" width="550">
+  <img src="assets/v9_scatter_uniform.png" alt="V9散点图" width="550">
 </p>
 <p align="center">V9分类型R²: avGFP=0.917, amacGFP=0.891, cgreGFP=0.832, ppluGFP=0.891</p>
 
 ### V7 Frozen MLP (R²=0.921)
 
 <p align="center">
-  <img src="V7预测能力.png" alt="V7散点图" width="550">
+  <img src="assets/V7预测能力.png" alt="V7散点图" width="550">
 </p>
 <p align="center">V7分类型R²: avGFP=0.864, amacGFP=0.851, cgreGFP=0.807, ppluGFP=0.880</p>
 
@@ -121,12 +121,12 @@ GFP Hexagon Warrior — SynBio Challenges 2026 · WHU-CHINA
 使用ESM3-ddG v2 (~1.4B参数) 预测突变自由能变化。
 
 <p align="center">
-  <img src="GFP 突变体荧光亮度与预测稳定性的全局关联分析.png" alt="亮度-稳定性关联" width="550">
+  <img src="assets/GFP 突变体荧光亮度与预测稳定性的全局关联分析.png" alt="亮度-稳定性关联" width="550">
 </p>
 <p align="center">亮度与ddG仅弱正相关(Pearson r=0.175),ddG仅作辅助过滤</p>
 
 <p align="center">
-  <img src="不同 GFP 同源家族的亮度 - 稳定性相关性对比.png" alt="分类型相关性" width="550">
+  <img src="assets/不同 GFP 同源家族的亮度 - 稳定性相关性对比.png" alt="分类型相关性" width="550">
 </p>
 <p align="center">分类型亮度-稳定性相关性: avGFP r=0.236, amacGFP r=0.106, cgreGFP r=0.083, ppluGFP r=0.036</p>
 
@@ -158,24 +158,24 @@ GFP_Hexagon_Warrior/
 │   ├── phase3_ddg_scoring.py              # Phase 3: ESM3-ddG热稳定性
 │   ├── phase4_scoring.py                  # Phase 4: 综合筛选 → Top 20
 │   └── prepare_72k_data.py               # 72k优质数据筛选
-├── final_pipeline.py                      # 终极管线:四数据源合并+选5条
+├── scripts/
+│   ├── final_pipeline.py                  # 终极管线:四数据源合并+选5条
+│   ├── generate_doc.py                    # 技术文档自动生成
+│   ├── predict_v9.py                      # V9单序列预测
+│   ├── scatter_v7.py / scatter_v9.py      # 模型预测散点图生成
+│   ├── test_model.py                      # 单序列亮度预测(交互式)
+│   └── test_wetlab_seqs.py                # 湿实验序列验证
 ├── main.py                                # 统一命令行入口
-├── test_model.py                          # 单序列亮度预测(交互式)
-├── predict_v9.py                          # V9单序列预测
-├── test_wetlab_seqs.py                    # 湿实验序列验证
-├── scatter_v7.py / scatter_v9.py          # 模型预测散点图生成
-├── generate_doc.py                        # 技术文档自动生成
+├── assets/                                # 项目图片(流程图/导图/散点图)
+├── docs/                                  # 文档(docx/txt)
 ├── data/
 │   ├── raw/GFP_data.xlsx                  # 原始实验数据(141,572条)
-│   ├── raw/Exclusion_List.csv             # 排除列表(135,414条)
 │   └── Models/                            # 模型存档(V5/V7/V9)
 ├── generated_seqs/
 │   ├── all_scored_merged_HCX_260625.csv   # 39,020条全量打分
-│   ├── final_5_candidates_v3_HCX_260625.csv  # 最终5条候选
-│   ├── iterations/                        # 各轮迭代详细数据
-│   ├── intermediate/                      # 中间筛选结果
-│   └── archive/                           # 旧方案数据
-└── prediction comparison/                 # 历史模型散点图(V4/V5)
+│   └── final_5_candidates_v3_HCX_260625.csv  # 最终5条候选
+├── prediction comparison/                 # 历史模型散点图(V4/V5)
+└── archive/                               # 历史迭代代码
 ```
 
 
@@ -213,8 +213,8 @@ python main.py generate --force        # Phase 2: 分层突变(~10min)
 python main.py score_ddg --force       # Phase 3: ddG打分(~6h)
 python main.py score --force           # Phase 4: 最终筛选(<1min)
 
-python final_pipeline.py               # 四数据源合并+三模型打分+选5条
-python generate_doc.py                 # 生成技术文档(docx)
+python scripts/final_pipeline.py           # 四数据源合并+三模型打分+选5条
+python scripts/generate_doc.py             # 生成技术文档(docx)
 ```
 
 

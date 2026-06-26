@@ -19,12 +19,10 @@ data/processed/
 # ===== 排除列表 (31MB, 太大) =====
 data/raw/Exclusion_List.csv
 
-# ===== 归档文件 (历代迭代代码, 不放GitHub) =====
-archive/
-
 # ===== 临时脚本 =====
 _*.py
 _*.txt
+github_repo_*.png
 
 # ===== 系统文件 =====
 .DS_Store
@@ -50,5 +48,5 @@ generated_seqs/iterations/
 generated_seqs/intermediate/
 generated_seqs/archive/
 
-# ===== project_flowchart =====
-project_flowchart.png
+# ===== 生成的流程图 =====
+assets/project_flowchart.png

@@ -158,12 +158,12 @@ python main.py score --force                 # 最终Top 20 (<1min)
 ### 5.2 仅推理 (使用已训练模型)
 
 ```bash
-python predict_v9.py                         # V9单序列亮度预测
-python test_model.py                         # 交互式多模型预测
-python scatter_v9.py                         # 生成V9散点图
-python scatter_v7.py                         # 生成V7散点图
-python final_pipeline.py                     # 四数据源合并+选5条候选
-python generate_doc.py                       # 生成技术文档(docx)
+python scripts/predict_v9.py                  # V9单序列亮度预测
+python scripts/test_model.py                  # 交互式多模型预测
+python scripts/scatter_v9.py                  # 生成V9散点图
+python scripts/scatter_v7.py                  # 生成V7散点图
+python scripts/final_pipeline.py              # 四数据源合并+选5条候选
+python scripts/generate_doc.py                # 生成技术文档(docx)
 ```
 
 ### 5.3 各阶段耗时参考
@@ -208,7 +208,7 @@ GFP_Hexagon_Warrior_技术文档_v*.docx   # 竞赛技术文档
 ### Q1: 没有GPU能运行吗？
 可以。代码自动检测CPU运行，但训练耗时极长。建议仅用于**推理测试**：
 ```bash
-python predict_v9.py    # 单序列预测，CPU约30秒/条
+python scripts/predict_v9.py    # 单序列预测，CPU约30秒/条
 ```
 
 ### Q2: 训练时显存溢出 (CUDA Out of Memory)？
