@@ -21,9 +21,9 @@ GFP Hexagon Warrior — SynBio Challenges 2026 · WHU-CHINA
 
 | 模型 | 架构 | 训练数据 | 权重 | R² (72k全量) | 角色 |
 |------|------|:--------:|:----:|:---:|------|
-| **V9** | ESM-2 LoRA + 深层MLP头 | 72k优质 | 50% | **0.946** | 精度最高,排名核心 |
-| **V7** | Frozen ESM-2 + MLP | 72k优质 | 35% | **0.921** | 体量小,推理快,用作初筛 |
-| **V5** | ESM-2 LoRA | 全量122k | 15% | 分类型0.44-0.82 | 覆盖最广,识别死蛋白 |
+| **V9** | ESM-2 LoRA + 深层MLP头 | 72k优质 | 50% | **0.883** | 精度最高,排名核心 |
+| **V7** | Frozen ESM-2 + MLP | 72k优质 | 35% | **0.850** | 体量小,推理快,用作初筛 |
+| **V5** | ESM-2 LoRA | 全量122k | 15% | 0.617 | 覆盖最广,识别死蛋白 |
 
 融合公式: `weighted = 0.50×V9 + 0.35×V7 + 0.15×V5`
 
@@ -43,21 +43,21 @@ GFP Hexagon Warrior — SynBio Challenges 2026 · WHU-CHINA
 
 ## 三、模型预测能力
 
-### V9 LoRA 主力模型 (R²=0.946)
+### V9 LoRA 主力模型 (R²=0.883)
 
 <p align="center">
   <img src="assets/v9_scatter_uniform.png" alt="V9散点图" width="550">
 </p>
 <p align="center">V9分类型R²: avGFP=0.917, amacGFP=0.891, cgreGFP=0.832, ppluGFP=0.891</p>
 
-### V7 Frozen MLP (R²=0.921)
+### V7 Frozen MLP (R²=0.850)
 
 <p align="center">
   <img src="assets/V7预测能力.png" alt="V7散点图" width="550">
 </p>
 <p align="center">V7分类型R²: avGFP=0.864, amacGFP=0.851, cgreGFP=0.807, ppluGFP=0.880</p>
 
-### V5 LoRA 基线模型 (全量122k训练)
+### V5 LoRA 基线模型 (全量122k训练R²=0.617)
 
 <p align="center">
   <img src="prediction comparison/model_generalization_v5_avGFP.png" alt="V5 avGFP" width="270">
