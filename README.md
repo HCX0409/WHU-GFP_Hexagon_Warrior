@@ -133,15 +133,9 @@ GFP Hexagon Warrior — SynBio Challenges 2026 · WHU-CHINA
 
 ## 六、最终候选序列
 
-经AlphaFold 3结构审核(beta-barrel完整性 + 发色团pLDDT ≥ 70),最终确认5条候选:
+经AlphaFold 3结构审核(beta-barrel完整性 + 发色团pLDDT ≥ 70),最终确认6条候选:
 
-| # | GFP类型 | 加权亮度 | 关键突变 | ddG | 来源 |
-|---|---------|:--------:|----------|:---:|------|
-| 1 | cgreGFP | 4.464 | S30F, C48V, E172K | +1.41 | 探索性扫描 |
-| 2 | ppluGFP | 4.300 | E32V, T38E, L125T, M218L, V219Y, V220S, L221H | -0.52 | 分层突变 |
-| 3 | amacGFP | 3.985 | I14V, Q157A, K166T, T203R, T230Q | +2.04 | 分层突变 |
-| 4 | amacGFP | 3.982 | V11L, R122V, K162A | -1.84 | 探索性扫描 |
-| 5 | avGFP | 3.709 | M78R, G116N, F165E | -0.88 | 探索性扫描 |
+见文档generated_seqs/final_5_candidates_v3_HCX_260625.csv
 
 
 ## 七、项目结构
