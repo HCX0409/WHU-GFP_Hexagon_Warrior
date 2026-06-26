@@ -6,7 +6,7 @@ GFP Hexagon Warrior — SynBio Challenges 2026 · WHU-CHINA
 
 ## 一、项目概述
 
-本项目利用蛋白质语言大模型 **ESM-2 (650M)** 的LoRA微调技术,构建**三模型加权协同**预测系统,结合 **ESM3-ddG (1.4B)** 热稳定性验证与 **AlphaFold 3** 结构审核,从12万条实验数据中挖掘高亮度突变模式,设计6条新型绿色荧光蛋白(GFP)变体。详细技术说明文档见docs/GFP_Hexagon_Warrior_WHU_CHINA_技术文档_v8.docx
+本项目利用蛋白质语言大模型 **ESM-2 (650M)** 的LoRA微调技术,构建**三模型加权协同**预测系统,结合 **ESM3-ddG (1.4B)** 热稳定性验证与 **AlphaFold 3** 结构审核,从处理后的12万条实验数据中挖掘高亮度突变模式,设计6条新型绿色荧光蛋白(GFP)变体。详细技术说明文档见docs/GFP_Hexagon_Warrior_WHU_CHINA_技术文档_v8.docx
 
 <p align="center">
   <img src="assets/项目导图.png" alt="项目思维导图" width="600">
@@ -21,9 +21,9 @@ GFP Hexagon Warrior — SynBio Challenges 2026 · WHU-CHINA
 
 | 模型 | 架构 | 训练数据 | 权重 | R² (72k全量) | 角色 |
 |------|------|:--------:|:----:|:---:|------|
-| **V9** | ESM-2 LoRA + 深层MLP头 | 72k优质 | 50% | **0.946** | 精度最高,排名核心 |
-| **V7** | Frozen ESM-2 + MLP | 72k优质 | 35% | **0.921** | 体量小,推理快,用作初筛 |
-| **V5** | ESM-2 LoRA | 全量122k | 15% | 分类型0.44-0.82 | 覆盖最广,识别死蛋白 |
+| **V9** | ESM-2 LoRA + 深层MLP头 | 72k优质 | 50% | **0.883** | 精度最高,排名核心 |
+| **V7** | Frozen ESM-2 + MLP | 72k优质 | 35% | **0.850** | 体量小,推理快,用作初筛 |
+| **V5** | ESM-2 LoRA | 全量122k | 15% | 0.617 | 覆盖最广,识别死蛋白 |
 
 融合公式: `weighted = 0.50×V9 + 0.35×V7 + 0.15×V5`
 
@@ -43,21 +43,21 @@ GFP Hexagon Warrior — SynBio Challenges 2026 · WHU-CHINA
 
 ## 三、模型预测能力
 
-### V9 LoRA 主力模型 (R²=0.946)
+### V9 LoRA 主力模型 (R²=0.883)
 
 <p align="center">
   <img src="assets/v9_scatter_uniform.png" alt="V9散点图" width="550">
 </p>
 <p align="center">V9分类型R²: avGFP=0.917, amacGFP=0.891, cgreGFP=0.832, ppluGFP=0.891</p>
 
-### V7 Frozen MLP (R²=0.921)
+### V7 Frozen MLP (R²=0.850)
 
 <p align="center">
   <img src="assets/V7预测能力.png" alt="V7散点图" width="550">
 </p>
 <p align="center">V7分类型R²: avGFP=0.864, amacGFP=0.851, cgreGFP=0.807, ppluGFP=0.880</p>
 
-### V5 LoRA 基线模型 (全量122k训练)
+### V5 LoRA 基线模型 (全量122k训练R²=0.617)
 
 <p align="center">
   <img src="prediction comparison/model_generalization_v5_avGFP.png" alt="V5 avGFP" width="270">
@@ -133,15 +133,9 @@ GFP Hexagon Warrior — SynBio Challenges 2026 · WHU-CHINA
 
 ## 六、最终候选序列
 
-经AlphaFold 3结构审核(beta-barrel完整性 + 发色团pLDDT ≥ 70),最终确认5条候选:
+经AlphaFold 3结构审核(beta-barrel完整性 + 发色团pLDDT ≥ 70),最终确认6条候选:
 
-| # | GFP类型 | 加权亮度 | 关键突变 | ddG | 来源 |
-|---|---------|:--------:|----------|:---:|------|
-| 1 | cgreGFP | 4.464 | S30F, C48V, E172K | +1.41 | 探索性扫描 |
-| 2 | ppluGFP | 4.300 | E32V, T38E, L125T, M218L, V219Y, V220S, L221H | -0.52 | 分层突变 |
-| 3 | amacGFP | 3.985 | I14V, Q157A, K166T, T203R, T230Q | +2.04 | 分层突变 |
-| 4 | amacGFP | 3.982 | V11L, R122V, K162A | -1.84 | 探索性扫描 |
-| 5 | avGFP | 3.709 | M78R, G116N, F165E | -0.88 | 探索性扫描 |
+见文档generated_seqs/final_5_candidates_v3_HCX_260625.csv
 
 
 ## 七、项目结构
